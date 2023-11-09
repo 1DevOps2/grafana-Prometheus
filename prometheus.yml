@@ -1,0 +1,29 @@
+global:
+  scrape_interval: 30s 
+
+scrape_configs:
+
+  - job_name: "prometheus"
+    honor_labels: true
+    static_configs:
+    - targets: 
+        - prometheus:9090
+
+  - job_name: "wiki cadvisor"
+    honor_labels: true
+    static_configs:
+    - targets: 
+        - localhost:8088
+  
+  - job_name: "Docker Job"
+    honor_labels: true
+    static_configs:
+    - targets: 
+        - localhost:8088
+
+  - job_name: "borger cadvisor"
+    honor_labels: true
+    static_configs:
+    - targets: 
+        - localhost:8088
+  

@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  # define prometheus service
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - 9090:9090
+      - 9324:9323
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  # define grafana service
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+
+
+
+
+
+# RUN THIS COMMAND ON REMOTE SERVER TO START CADVISOR !
+# docker run -d   --name cadvisor   --privileged=true   -p 8088:8080   -v /:/rootfs:ro   -v /var/run:/var/run:rw   -v /sys:/sys:ro   -v /var/lib/docker:/var/lib/docker:ro   gcr.io/cadvisor/cadvisor:v0.47.2
