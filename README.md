@@ -1,3 +1,11 @@
+# Container monitoring with cAdvisor, prometheus, and grafana 
+
+ ![Docker](https://img.shields.io/badge/Docker-23.0.3-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white) ![cAdvisor](https://img.shields.io/badge/cAdvisor-0.47-%234CAEEA.svg?style=for-the-badge&logo=google&logoColor=white) ![Prometheus](https://img.shields.io/badge/Prometheus-latest-%23E6522C.svg?style=for-the-badge&logo=prometheus&logoColor=white) ![Grafana](https://img.shields.io/badge/Grafana-latest-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white) 
+
+
+
+![Container monitoring](https://github.com/1DevOps2/grafana-Prometheus/assets/105498424/c5c4a81e-559b-420b-960e-d368db713903)
+
 ## Introduction
 
 In today's digital landscape, efficient container service monitoring is crucial for ensuring the reliability and performance of your applications. To achieve this, we'll explore the setup of three essential tools: cAdvisor, Prometheus, and Grafana. This article aims to provide an easy-to-understand guide on setting up these monitoring tools to keep a watchful eye on your containerized services.
@@ -19,7 +27,7 @@ Grafana is a popular open-source platform for monitoring and observability, offe
 To get started, we will follow these steps to set up the monitoring infrastructure:
 
 ### Installing cAdvisor: 
-We will install cAdvisor on the same host where your containerized apps/services are running. cAdvisor acts as an agent, collecting real-time data on container performance, resource utilization, and other critical metrics. Although a common practice is to install cAdvisor directly on the host, we will demonstrate the Docker installation method for simplicity and consistency.
+We will install cAdvisor on the same host where your ```containerized apps/services``` are running. cAdvisor acts as an agent, collecting real-time data on container performance, resource utilization, and other critical metrics. Although a common practice is to install cAdvisor directly on the host, we will demonstrate the Docker installation method for simplicity and consistency.
 
 ### Installing Prometheus and Grafana: 
 Both Prometheus and Grafana will be installed on separate instances using Docker containers. This separation allows for better scalability and isolation. Prometheus will scrape metrics from cAdvisor to store and query the data, while Grafana will create visual dashboards based on these metrics.
