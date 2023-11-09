@@ -1,6 +1,6 @@
 # Container monitoring with cAdvisor, prometheus, and grafana 
 
- ![Docker](https://img.shields.io/badge/Docker-23.0.3-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white) ![cAdvisor](https://img.shields.io/badge/cAdvisor-0.47-%234CAEEA.svg?style=for-the-badge&logo=google&logoColor=white) ![Prometheus](https://img.shields.io/badge/Prometheus-latest-%23E6522C.svg?style=for-the-badge&logo=prometheus&logoColor=white) ![Grafana](https://img.shields.io/badge/Grafana-latest-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white) 
+ ![Docker](https://img.shields.io/badge/Docker-v23.0.3-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white) ![cAdvisor](https://img.shields.io/badge/cAdvisor-v0.47.2-%234CAEEA.svg?style=for-the-badge&logo=google&logoColor=white) ![Prometheus](https://img.shields.io/badge/Prometheus-v2.48-%23E6522C.svg?style=for-the-badge&logo=prometheus&logoColor=white) ![Grafana](https://img.shields.io/badge/Grafana-v10.2-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white) 
 
 
 
