@@ -22,33 +22,9 @@ Prometheus is a high-performance, open-source monitoring and alerting toolkit. I
 ### 3. Grafana:
 Grafana is a popular open-source platform for monitoring and observability, offering powerful visualization and dashboarding capabilities. It acts as the eyes of your monitoring setup, providing user-friendly, customizable dashboards to display the metrics collected by Prometheus. Grafana allows you to create visually appealing charts and graphs that help you gain insights into your container services' performance and resource usage.
 
-## How the Setup Will Work
-
-To get started, we will follow these steps to set up the monitoring infrastructure:
-
-### Configure docker daemon
-To monitor docker engine, we need to configure the Docker daemon on that server where ```containerized apps/services``` are running, you need to specify the metrics-address. The best way to do this is via the ```daemon.json```.
-
-### Running Wordpress app
-To demonstrate this tutorial, i will install WordPress as a exmaple using Docker Compose. Two essential containers/services: the ```WordPress``` application and the ```MySQL``` database.
-
-### Installing cAdvisor
-We will install cAdvisor on the same host where your ```containerized apps/services``` are running. cAdvisor acts as an agent, collecting real-time data on container performance, resource utilization, and other critical metrics. Although a common practice is to install cAdvisor directly on the host, we will demonstrate the Docker installation method for simplicity and consistency.
-
-### Installing Prometheus and Grafana
-Both Prometheus and Grafana will be installed on separate instances using Docker containers. This separation allows for better scalability and isolation. Prometheus will scrape metrics from cAdvisor to store and query the data, while Grafana will create visual dashboards based on these metrics.
-
-### Defining Endpoints in Prometheus
-In the prometheus.yml configuration file, you will define endpoints for cAdvisor. These endpoints specify where Prometheus can collect metrics from cAdvisor. Prometheus will periodically scrape these endpoints to keep its metrics up to date. This is the crucial link that connects cAdvisor's data to Prometheus.
-
-### Visualizing Metrics with Grafana
-After setting up Prometheus, Grafana will come into play. You will create Grafana dashboards and configure them to pull data from Prometheus. These dashboards will provide a user-friendly interface to visualize and explore the metrics collected from your containerized services.
-
-By following this setup, you will have a robust monitoring system in place, allowing you to keep a close watch on the health and performance of your containerized applications with ease. The combination of cAdvisor, Prometheus, and Grafana will empower you to make informed decisions and ensure the smooth operation of your container services.
-
 ## Setup
 ### Configure docker daemon
-To configure the Docker daemon as a Prometheus target, you need to specify the metrics-address. The best way to do this is via the daemon.json, which is located at one of the following locations by default. If the file doesn't exist, create it. 
+To monitor docker engine, we need to configure the Docker daemon on that server where ```containerized apps/services``` are running. you need to specify the metrics-address. The best way to do this is via the daemon.json, which is located at one of the following locations by default. If the file doesn't exist, create it. 
 
 ```
 sudo nano /etc/docker.daemon.json
@@ -65,6 +41,7 @@ now restart the docker
 sudo systemctl restart docker
 ```
 ### Running Wordpress app
+To demonstrate this tutorial, i will install WordPress as a exmaple using Docker Compose. Two essential containers/services: the ```WordPress``` application and the ```MySQL``` database.
 create a direcotry, called ```wordpress``` and create docker-compose file called ```docker-compose.yaml```
 ```
 mkdir wordpress; cd wordpress; nano docker-compose.yaml
@@ -109,7 +86,8 @@ run the wordpress app
 docker-compose up -d
 ```
 ### Installing cAdvisor
-we will install cadvisor using docker, run below command
+We will install cAdvisor on the same host where your ```containerized apps/services``` are running. cAdvisor acts as an agent, collecting real-time data on container performance, resource utilization, and other critical metrics. Although a common practice is to install cAdvisor directly on the host, we will demonstrate the Docker installation method for simplicity and consistency.
+Install cadvisor using docker, run below command:
 ```
 docker run -d \
   --name cadvisor \
@@ -122,6 +100,8 @@ docker run -d \
   gcr.io/cadvisor/cadvisor:v0.47.2
 ```
 ### Installing Prometheus and Grafana
+Both Prometheus and Grafana will be installed on separate instances using Docker containers. This separation allows for better scalability and isolation. Prometheus will scrape metrics from cAdvisor to store and query the data, while Grafana will create visual dashboards based on these metrics.
+
 Create directory ```prom_grafana``` and create ```docker-compose.yaml```.
 ```
 mkdir prom_grafana; cd prom_grafana; sudo nano docker-compose.yaml
@@ -151,8 +131,9 @@ services:
     volumes:
       - ./grafana:/var/lib/grafana
 ```
-### Defining Endpoints in Prometheus.yml
-add the following content in ```prometheus.yml``` file. make sure to change the ```ip addresses```. 
+### Defining Endpoints in Prometheus
+In the prometheus.yml configuration file, you will define endpoints for cAdvisor. These endpoints specify where Prometheus can collect metrics from cAdvisor. Prometheus will periodically scrape these endpoints to keep its metrics up to date. This is the crucial link that connects cAdvisor's data to Prometheus.
+add the following content in ```prometheus.yml``` file:
 ```
 global:
   scrape_interval: 30s 
@@ -177,14 +158,14 @@ scrape_configs:
     - targets: 
         - localhost:8080
 ```
-Now run the container
+make sure to change the ```ip addresses```. Now run the container:
 ```
 docker-compose up -d
 ```
 now configure the grafana for prometheus.
 
-## Grafana Dashboards
-To configure the Grafana dashboard, I downloaded several useful JSON files from the official Grafana website, available in this repo.
+### Visualizing Metrics with Grafana
+After setting up Prometheus, Grafana will come into play. You will create Grafana dashboards and configure them to pull data from Prometheus. These dashboards will provide a user-friendly interface to visualize and explore the metrics collected from your containerized services. To configure the Grafana dashboard, I downloaded several useful JSON files from the official Grafana website, available in this repo.
 
 ## Access Points
 For docker engine daemon --> ```localhost:9323```.
