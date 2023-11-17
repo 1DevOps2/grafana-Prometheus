@@ -133,6 +133,10 @@ services:
 ```
 ### Defining Endpoints in Prometheus
 In the prometheus.yml configuration file, you will define endpoints for cAdvisor. These endpoints specify where Prometheus can collect metrics from cAdvisor. Prometheus will periodically scrape these endpoints to keep its metrics up to date. This is the crucial link that connects cAdvisor's data to Prometheus.
+open file:
+```
+sudo nano prometheus.yml
+```
 add the following content in ```prometheus.yml``` file:
 ```
 global:
@@ -168,9 +172,9 @@ now configure the grafana for prometheus.
 After setting up Prometheus, Grafana will come into play. You will create Grafana dashboards and configure them to pull data from Prometheus. These dashboards will provide a user-friendly interface to visualize and explore the metrics collected from your containerized services. To configure the Grafana dashboard, I downloaded several useful JSON files from the official Grafana website, available in this repo.
 
 ## Access Points
-For docker engine daemon --> ```localhost:9323```.
+For docker engine daemon --> ```localhost:9323/metrics```.
 
-For cAdvisor --> ```localhost:8080```
+For cAdvisor --> ```localhost:8080/metrics```
 
 For Prometheus --> ```localhost:9090```
 
