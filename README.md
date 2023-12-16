@@ -127,7 +127,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./grafana:/var/lib/grafana
+      - grafana:/var/lib/grafana
 ```
 ### Defining Endpoints in Prometheus
 In the prometheus.yml configuration file, you will define endpoints for cAdvisor. These endpoints specify where Prometheus can collect metrics from cAdvisor. Prometheus will periodically scrape these endpoints to keep its metrics up to date. This is the crucial link that connects cAdvisor's data to Prometheus.
