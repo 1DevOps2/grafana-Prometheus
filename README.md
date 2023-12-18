@@ -27,7 +27,7 @@ Grafana is a popular open-source platform for monitoring and observability, offe
 To monitor docker engine, we need to configure the Docker daemon on that server where ```containerized apps/services``` are running. you need to specify the metrics-address. The best way to do this is via the daemon.json, which is located at one of the following locations by default. If the file doesn't exist, create it. 
 
 ```
-sudo nano /etc/docker.daemon.json
+sudo nano /etc/docker/daemon.json
 ```
 In order for Prometheus to gather the metrics of the docker we need to add below content in the ```/etc/docker/daemon.json``` file.
 ```
@@ -94,6 +94,7 @@ docker run -d \
   --privileged=true \
   -p 8080:8080 \
   -v /var/run:/var/run:rw \
+  -v /:/rootfs:ro \
   -v /var/lib/docker:/var/lib/docker:ro \
   gcr.io/cadvisor/cadvisor:v0.47.2
 ```
